@@ -12,17 +12,19 @@ import { Button } from '@/app/ui/button';
 import { updateInvoice, State } from '@/app/lib/actions';
 import { useActionState } from 'react';
 
-export default function EditInvoiceForm({
-  invoice,
-  customers,
-}: {
-  invoice: InvoiceForm;
-  customers: CustomerField[];
-}) {
+export default function EditInvoiceForm(
+  {
+    invoice,
+    customers,
+  }: {
+    invoice: InvoiceForm;
+    customers: CustomerField[];
+  }) {
 
   // pass id to the Server Action using JS bind. This will ensure that any values passed to the Server Action are encoded.
   const initialState: State = { message: null, errors: {} };
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
 
   return (
